@@ -59,6 +59,8 @@ import org.springframework.web.bind.annotation.RequestBody;
     @PostMapping("/api/analyze")
     public String postMethodName(@RequestBody byte[] imageBytes) {
 
+        try {
+
         System.out.println("Starting Gemini test with new SDK...");
 
         Client client = Client.builder() 
@@ -80,6 +82,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 
         String aiResponse = response.text();
         return aiResponse;
+        }catch (Exception e) {
+            e.printStackTrace();
+            return "ERROR: " + e.getMessage();
+        }
 
     }
 
