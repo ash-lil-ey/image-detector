@@ -17,6 +17,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 
     @RestController
     public class GeminiController{
+
+        public void speak(String text) {
+            try {
+                String command = "PowerShell -Command \"Add-Type -AssemblyName System.Speech; " +
+                        "$speak = New-Object System.Speech.Synthesis.SpeechSynthesizer; " +
+                        "$speak.Speak('" + text + "');\"";
+                Runtime.getRuntime().exec(command);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
         private static final String apiKey= "AIzaSyBSxyR1Mhxx4FYSUKJoGglQSOWLJxIchOs";
 
         @GetMapping("/api/test-vision")
@@ -49,7 +61,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
             String aiResponse = response.text();
             System.out.println("Gemini Response: " + aiResponse);
-            
+            speak(aiResponse);
         
             return aiResponse;
             
