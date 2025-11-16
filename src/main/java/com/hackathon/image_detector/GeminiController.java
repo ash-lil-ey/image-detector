@@ -42,7 +42,7 @@ import org.springframework.web.bind.annotation.RequestBody;
             System.out.println("Sending request to Gemini...");
 
             GenerateContentResponse response = client.models.generateContent(
-                "models/gemini-2.5-pro", 
+                "models/gemini-2.5-flash", 
                 content,
                 null 
             );
@@ -96,7 +96,7 @@ import org.springframework.web.bind.annotation.RequestBody;
         System.out.println("Sending request to Gemini... (This may take a moment)");
 
         GenerateContentResponse response = client.models.generateContent(
-            "gemini-2.5-pro", 
+            "gemini-2.5-flash", 
             content,
             null 
         );
